@@ -1,40 +1,58 @@
+import java.util.*;
 public class lab07 {
-    public static void main(String[] args) {
-        Main.MyHashSet<String> mySet = new Main.MyHashSet<>();
+        public static void main(String[] args) {
+            // Create an instance of your HSet
+            HSet<String> hSet = new HSet<>();
 
-        // เพิ่มสมาชิก
-        mySet.add("a");
-        mySet.add("b");
-        mySet.add("c");
+            // Add elements to the set
+            hSet.add("Apple");
+            hSet.add("Banana");
+            hSet.add("Orange");
 
-        // เช็คว่า a,b,c,d เป็นสมาชิกหรือไม่
-        System.out.println("Does mySet contain 'a'? " + mySet.contains("a"));
-        System.out.println("Does mySet contain 'b'? " + mySet.contains("b"));
-        System.out.println("Does mySet contain 'c'? " + mySet.contains("c"));
-        System.out.println("Does mySet contain 'd'? " + mySet.contains("d"));
-        System.out.println("The size of mySet is: " + mySet.size());
+            // Print the size of the set
+            System.out.println("Size of the set: " + hSet.size());
 
-        //เช็คว่าถ้าเราเพิ่ม b เข้าไปอีกรอบจะไม่เกิดการเพิ่มสมาชิกตัวใหม่เข้าไป
-        mySet.add("b");
+            // Check if the set contains a specific element
+            System.out.println("Contains 'Apple': " + hSet.contains("Apple"));
+            System.out.println("Contains 'Grapes': " + hSet.contains("Grapes"));
 
-        //เช็ค size
-        System.out.println("The size of mySet is: " + mySet.size());
+            // Create another collection
+            List<String> otherList = Arrays.asList("Banana", "Orange");
 
-        // ลบสมาชิก
-        mySet.remove("a");
+            // Add all elements from the collection to the set
+            hSet.addAll(otherList);
 
-        //เช็ค size
-        System.out.println("The size of mySet is: " + mySet.size());
+            // Print the size of the set after adding elements from the collection
+            System.out.println("Size of the set after adding elements from the collection: " + hSet.size());
 
+            // Remove an element from the set
+            hSet.remove("Banana");
 
-        //เช็คว่าเป็น set ว่างไหม
-        System.out.println("Is mySet empty? " + mySet.isEmpty());
+            // Print the size of the set after removing an element
+            System.out.println("Size of the set after removing an element: " + hSet.size());
 
-        //ลบสมาชิกทุกตัวออกจาก set
-        mySet.clear();
+            // Check if the set contains all elements from another collection
+            System.out.println("Contains all elements from the collection: " + hSet.containsAll(otherList));
 
-        //เช็คว่าเป็น set ว่างไหม
-        System.out.println("Is mySet empty? " + mySet.isEmpty());
+            // Retain only the elements in the set that are also in the other collection
+            hSet.retainAll(otherList);
 
+            // Print the size of the set after retaining elements
+            System.out.println("Size of the set after retaining elements: " + hSet.size());
+
+            // Remove all elements from the set that are in the other collection
+            hSet.removeAll(otherList);
+
+            // Print the size of the set after removing elements
+            System.out.println("Size of the set after removing elements: " + hSet.size());
+
+            // Check if the set is empty
+            System.out.println("Is the set empty? " + hSet.isEmpty());
+
+            // Clear the set
+            hSet.clear();
+
+            // Print the size of the set after clearing
+            System.out.println("Size of the set after clearing: " + hSet.size());
+        }
     }
-}
