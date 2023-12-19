@@ -54,5 +54,6 @@ public class lab07 {
 
             // Print the size of the set after clearing
             System.out.println("Size of the set after clearing: " + hSet.size());
+
         }
     }
