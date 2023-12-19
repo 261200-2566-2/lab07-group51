@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.HashMap;
 
 public class HSet<E> implements Set<E> {
     private final HashMap<E,Integer> HMap = new HashMap<>();
@@ -7,47 +10,45 @@ public class HSet<E> implements Set<E> {
 
     @Override
     public boolean add(E element) {
-        HMap.put(element,0);
-        return true;
-    }
-
-    @Override
-    public boolean remove(Object element) {
-        return HMap.remove(element,0);
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        for( Object i : c){
-            if(!contains(i)){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends E> c) {
-        for(E i : c){
-            add(i);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        for(Object i : c){
-
+        if(!contains(element)) {
+            HMap.put(element, 0);
+            return true;
         }
         return false;
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
-        for(Object i : c){
-            remove(i);
+    public boolean remove(Object element) {
+        if(!contains(element)) {
+         HMap.remove(element,0);
+         return true;}
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+      return HMap.keySet().containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends E> c) {
+        boolean a = false;
+        for(E i : c){
+            if(add(i)){
+                a = true;
+            }
         }
-        return true;
+        return a;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+       return HMap.keySet().retainAll(c);
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return HMap.keySet().removeAll(c);
     }
 
     @Override
